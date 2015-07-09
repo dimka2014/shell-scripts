@@ -37,6 +37,7 @@ alias asins="php app/console assets:install --symlink"
 alias reel="php app/console fos:elastica:populate"
 alias ll="ls -ahl"
 alias sf="php app/console"
+alias reapache="sudo /opt/local/apache2/bin/apachectl restart"
 
 ## Mongo
 
