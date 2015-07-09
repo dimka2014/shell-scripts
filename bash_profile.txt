@@ -34,7 +34,7 @@ alias asdump="php app/console assetic:dump"
 alias rodeb="php app/console router:debug"
 alias clcache="sudo rm -R app/cache/*"
 alias asins="php app/console assets:install --symlink"
-alias elasticpop="php app/console fos:elastica:populate"
+alias reel="php app/console fos:elastica:populate"
 alias ll="ls -ahl"
 alias sf="php app/console"
 
