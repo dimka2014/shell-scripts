@@ -1,14 +1,15 @@
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-export PS1="\[\e]0;\u@\h: \w\a\]\[\033[01;36m\]\u@\h \[\033[01;33m\]\w\[\033[33m\]\$(__git_ps1 ' git:(%s)')\[\033[01;35m\] \[\033[00m\]"
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 
-source ~/.git-prompt.sh
-source ~/.git-completion.bash
-
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-
-export DOCKER_HOST=tcp://192.168.59.103:2375
+export PATH="/usr/local/sbin:$PATH"
+export PS1="\[\e]0;\u@\h: \w\a\]\[\033[01;32m\]\u@\h \[\033[01;36m\]\w\[\033[35m\]\$(__git_ps1 ' git:(%s)')\n\[\033[01;35m\]\$ \[\033[00m\]"
 
 alias gits="git status"
 alias gitdev="git checkout develop"
@@ -37,20 +38,3 @@ alias asins="php app/console assets:install --symlink"
 alias reel="php app/console fos:elastica:populate"
 alias ll="ls -ahl"
 alias sf="php app/console"
-alias reapache="sudo /opt/local/apache2/bin/apachectl restart"
-
-## Mongo
-
-alias mongostart="sudo mongod -f /opt/local/etc/mongodb/mongod.conf --httpinterface"
-
-mongostop_func () {
-  local mongopid=`less /opt/local/var/db/mongodb_data/mongod.lock`;
-  if [[ $mongopid =~ [[:digit:]] ]]; then
-      sudo kill -15 $mongopid;
-      echo mongod process $mongopid terminated;
-  else
-      echo mongo process $mongopid not exist;
-  fi
-}
-
-alias mongostop="mongostop_func"
